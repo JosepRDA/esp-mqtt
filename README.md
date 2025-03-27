@@ -19,4 +19,3 @@
         idf.py build # isso utiliza das ferramentas da esp para compilar o projeto
         idf.py flash -P <porta usb> # transfere o código compilado para a placa
 ``
-    - OBS: `idf.py` só estará disponível depois da instalação das ferramentas *esp* no sistema.
