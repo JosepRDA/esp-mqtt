@@ -5,4 +5,7 @@ target:
 	idf.py set-target esp32
 
 flash:
-	idf.py flash -P /dev/tty/USB0
+	idf.py flash
+
+monitor:
+	idf.py monitor
