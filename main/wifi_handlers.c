@@ -6,6 +6,7 @@
 #include "freertos/semphr.h"
 #include "esp_rom_gpio.h"
 
+#include "led.h"
 
 static unsigned int retry_num = 0; // conta o numero de tentativas
 SemaphoreHandle_t wifi_connected_sem; // isso é extern em main.c
@@ -20,7 +21,7 @@ void wifi_event_handler(void* event_handler_arg, esp_event_base_t event_base,
                 break;
             case WIFI_EVENT_STA_CONNECTED:
                 ESP_LOGI(TAG, "->> Connected to WiFi.");
-                 
+                blink_led_success();
                 break;
             case WIFI_EVENT_STA_DISCONNECTED:
                 ESP_LOGI(TAG, "->> Disconnected from WiFi.");
@@ -35,7 +36,7 @@ void wifi_event_handler(void* event_handler_arg, esp_event_base_t event_base,
                 break;
             case IP_EVENT_STA_GOT_IP:
                 ESP_LOGI(TAG, "->> Received WiFi ip...");
-                 
+                blink_led_success();
                 break;
             default:
                 ESP_LOGW(TAG, "->> Unhandled wifi event: %ld", event_id);
@@ -45,7 +46,7 @@ void wifi_event_handler(void* event_handler_arg, esp_event_base_t event_base,
         ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
         ESP_LOGI(TAG, "IP received: " IPSTR, IP2STR(&event->ip_info.ip));
         xSemaphoreGive(wifi_connected_sem);
-         
+        blink_led_success();
     }
 }
 
