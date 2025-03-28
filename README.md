@@ -5,7 +5,6 @@
 
 #### Atributos do projeto
 - Programado e compilado para a plataforma, tornando-o mais otimizado;
-- Utiliza de criptografia(LTS) para proteger os dados do usuário;
 - Muito simples, requer apenas um esp32 com conexão MQTT e WiFi.
 
 #### Como utilizar
@@ -13,9 +12,12 @@
     - Compilador C/C++(GCC, Clang, MSVC, etc.);
     - CMake(build);
     - Framework da esp(https://github.com/espressif/esp-idf).
-- Como compilar e rodar:
 
-``bash
-        idf.py build # isso utiliza das ferramentas da esp para compilar o projeto
-        idf.py flash -P <porta usb> # transfere o código compilado para a placa
-``
+#### Compilação e Flash
+```bash
+# Compila o projeto usando as ferramentas do ESP-IDF
+idf.py build
+
+# Grava o firmware na placa (substitua <porta_usb> pela sua porta, ex: /dev/ttyUSB0 ou COM3)
+idf.py flash -p <porta_usb>
+```
